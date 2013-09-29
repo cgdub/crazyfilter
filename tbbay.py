@@ -21,8 +21,8 @@ def tokenize(normal, crazy):
     in that order'''
 #    incoming = sys.argv[1]
 #    incoming_crazy = sys.argv[2]
-#    normal = TextBlob(read(incoming))
-#    crazy = TextBlob(read(incoming_crazy))
+    normal = TextBlob(normal)
+    crazy = TextBlob(crazy)
     return normal.sentences, crazy.sentences
 
 
@@ -31,12 +31,13 @@ def train(normal, crazy):
     '''takes tokenized normal and crazy, trains the bayes
     off of them, returns a trained bayes'''
     train = []
+    #print normal.tokens
     for sentences in normal:
-        train += (sentences, 'pos')
+        train.append( (sentences, 'pos'))
     for sentences in crazy:
-        train += (sentences, 'neg')
+        train.append((sentences, 'neg'))
     random.seed(1)
-    train.random()
+    random.shuffle(train)
     bayes = NaiveBayesClassifier(train)
     return bayes
 
