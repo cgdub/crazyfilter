@@ -4,6 +4,7 @@ import json
 import urlparse
 from flask import Flask
 from flask import render_template
+import scrape
 
 import redis, redisbayes
 if not os.environ.get('REDISCLOUD_URL'):
@@ -43,9 +44,10 @@ def hello():
     cs = getComments()
     commentlist = []
     for c in cs:
+        cscraped = scrape.strip_tags(c)
         comment = {}
-        comment['content'] = str(c)
-        comment['clf'] = str(rb.classify(c))
+        comment['content'] = str(cscraped)
+        comment['clf'] = str(rb.classify(cscraped))
         commentlist.append(comment)
     return render_template("index.html", commentlist=commentlist)
 
