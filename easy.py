@@ -2,12 +2,10 @@ import redis, redisbayes
 rb = redisbayes.RedisBayes(redis=redis.Redis())
 from sys import argv
 
-script, normalfile, crazyfile = argv
-
-with open(normalfile) as f:
+with open('sanecomments.txt') as f:
     normallist = f.readlines()
 
-with open(crazyfile) as f:
+with open('nuttycomments.txt') as f:
     crazylist = f.readlines()
 
 for crazy in crazylist:
@@ -16,5 +14,5 @@ for crazy in crazylist:
 for normal in normallist:
     rb.train('sane', normal)
 
-print rb.classify('This show used to be brilliant. Not anymore.')
+print rb.classify('I agree with this opinion. He poses a very interesting argument.')
 
