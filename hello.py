@@ -16,10 +16,10 @@ else:
     rb = redisbayes.RedisBayes(redis=redis.Redis(host=url.hostname, port=url.port, password=url.password))
 from sys import argv
 
-with open('sanecomments.txt') as f:
+with open('sanecomments2.txt') as f:
     normallist = f.readlines()
 
-with open('nuttycomments.txt') as f:
+with open('crazycomments.txt') as f:
     crazylist = f.readlines()
 
 for crazy in crazylist:
