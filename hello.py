@@ -23,10 +23,10 @@ with open('crazycomments.txt') as f:
     crazylist = f.readlines()
 
 for crazy in crazylist:
-    rb.train('crazy', scrape.strip_tags(crazy))
+    rb.train('sane', scrape.strip_tags(crazy))
 
 for normal in normallist:
-    rb.train('sane', scrape.strip_tags(normal))
+    rb.train('crazy', scrape.strip_tags(normal))
 
 app = Flask(__name__)
 
