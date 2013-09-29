@@ -23,10 +23,10 @@ with open('crazycomments.txt') as f:
     crazylist = f.readlines()
 
 for crazy in crazylist:
-    rb.train('crazy', scrape.strip_tags(crazy)[0:300])
+    rb.train('crazy', scrape.strip_tags(crazy))
 
 for normal in normallist:
-    rb.train('sane', scrape.strip_tags(normal)[0:300])
+    rb.train('sane', scrape.strip_tags(normal))
 
 app = Flask(__name__)
 
@@ -49,8 +49,8 @@ def hello():
         score = rb.score(cscraped)
         comment = {}
         comment['content'] = str(cscraped)
-        comment['clf'] = str(rb.classify(cscraped)[0:300])
-        if math.fabs(score['crazy'] - score['sane']) > 10:
+        comment['clf'] = str(rb.classify(cscraped))
+        if math.fabs(score['crazy'] - score['sane']) > 15:
             commentlist.append(comment)
     return render_template("index.html", commentlist=commentlist)
 
