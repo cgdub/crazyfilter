@@ -18,7 +18,7 @@ from sys import argv
 with open('sanecomments.txt') as f:
     normallist = f.readlines()
 
-with open('dannycrazyselectedforremoval.txt') as f:
+with open('nuttycomments.txt') as f:
     crazylist = f.readlines()
 
 for crazy in crazylist:
