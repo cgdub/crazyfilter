@@ -3,6 +3,7 @@ import requests
 import json
 import urlparse
 from flask import Flask
+from flask import render_template
 
 import redis, redisbayes
 if not os.environ.get('REDISCLOUD_URL'):
@@ -39,7 +40,12 @@ def getComments():
 
 @app.route('/')
 def hello():
-    comment = getComments()[0]
-    result = str(comment) + "<br><br>" + str(rb.classify(comment))
-    return result
+    cs = getComments()
+    commentlist = []
+    for c in cs:
+        comment = {}
+        comment['content'] = str(c)
+        comment['clf'] = str(rb.classify(c))
+        commentlist.append(comment)
+    return render_template("index.html", commentlist=commentlist)
 

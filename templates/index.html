@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+<title>Crazy / Sane</title>
+</head>
+<body>
+<ul>
+    {% for comment in commentlist %}
+    <li>
+    <b>{{ comment['clf'] }}</b><br>
+    <p>{{ comment['content'] }}</p>
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
