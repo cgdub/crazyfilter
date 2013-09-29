@@ -36,3 +36,6 @@ nosetests.xml
 .project
 .pydevproject
 
+# redis thing
+*.rdb
+
