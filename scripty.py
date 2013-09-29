@@ -1,16 +1,17 @@
-import tbbay.py
+import tbbay
+from sys import argv
 
 script, normal, crazy = argv
 
-normal = read(normal)
-crazy = read(crazy)
+normal = tbbay.read(normal)
+crazy = tbbay.read(crazy)
 
-normal = cleaner(normal)
-crazy = cleaner(crazy)
+normal = tbbay.cleaner(normal)
+crazy = tbbay.cleaner(crazy)
 
-normal, crazy = tokenize(normal, crazy)
+normal, crazy = tbbay.tokenize(normal, crazy)
 
-bayes = train(normal, crazy)
+bayes = tbbay.train(normal, crazy)
 
-print classify('Obama is literally Hitler', bayes)
+print tbbay.classify('Obama is literally Hitler', bayes)
 
