@@ -10,4 +10,4 @@ for entry in comments:
     if entry.has_key("results"):
         if entry.get("results").has_key("comments"):
             for comment in entry.get("results").get("comments"):
-                print comment.get("commentBody")
+                print comment.get("commentBody").encode('ascii', 'ignore')
