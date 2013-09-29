@@ -1,10 +1,12 @@
 import os
 import requests
 import json
+import urlparse
 from flask import Flask
 
 import redis, redisbayes
-rb = redisbayes.RedisBayes(redis=redis.Redis())
+url = urlparse.urlparse(os.environ.get('REDISCLOUD_URL'))
+rb = redisbayes.RedisBayes(redis=redis.Redis(host=url.hostname, port=url.port, password=url.password))
 from sys import argv
 
 with open('sanecomments.txt') as f:
