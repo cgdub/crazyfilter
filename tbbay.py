@@ -1,4 +1,5 @@
 from text.blob import TextBlob
+import scrape.py
 import random
 from text.classifiers import NaiveBayesClassifier
 import sys
@@ -10,6 +11,10 @@ def read(file_of_words):
     for i in fileObject.read():
         corpus_words += i
     return corpus_words
+
+def cleaner(string_of_words):
+    '''takes in a string of words and removes html'''
+    return strip_tags(string_of_words)
 
 def tokenize(normal, crazy):
     '''returns tokenized versions of normal and crazy strings
