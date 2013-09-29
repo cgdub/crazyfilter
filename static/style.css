@@ -1,0 +1,20 @@
+/* modified version of expressjs's css */
+
+#crazy {
+    background-color:#ffcccc;
+    border:10px;
+    border-radius:5px;
+    box-shadow: 4px 4px 2px #888888;
+    padding:10px;
+    margin:20px;
+}
+
+#sane {
+    background-color:#ccccff;
+    border:10px;
+    border-radius:5px;
+    box-shadow: 4px 4px 2px #888888;
+    padding:10px;
+    margin:20px;
+}
+

@@ -2,15 +2,35 @@
 <html>
 <head>
 <title>Crazy / Sane</title>
+<link rel=stylesheet type=text/css href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<ul>
-    {% for comment in commentlist %}
-    <li>
-    <b>{{ comment['clf'] }}</b><br>
-    <p>{{ comment['content'] }}</p>
-    </li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="span4">
+            <h1>Crazy Filter</h1>
+            <p>Made by Chris Williams, Dan Cohen, and Daniel Padawer</p>
+            <h4>What is it?</h4>
+            <p>Crazy Filter pulls random comments from The New York Times' Community API
+            and uses a <a href="http://en.wikipedia.org/wiki/Naive_Bayes_classifier">Bayes classifier</a>
+            to classify them as crazy or sane. Crazy comments are highlighted as red
+            Sane comments are highlighted as blue.</p>
+            <h4>Where's the source?</h4>
+            <p>On <a href="https://github.com/chrisgw/zeft">GitHub</a></p>
+        </div>
+        <div class="span8">
+            <div id=crazy><h3>Crazy</h3></div>  <div id=sane><h3>Sane</h3></div>
+        <table class="table">
+            {% for comment in commentlist %}
+            <tr>
+            <div id={{ comment['clf'] }}>{{ comment['content'] }}</div>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </div>
+</div>
 </body>
 </html>
