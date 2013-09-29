@@ -22,7 +22,7 @@ for normal in normallist:
 app = Flask(__name__)
 
 def getComments():
-    res = requests.get("http://api.nytimes.com/svc/community/v2/comments/recent.json?&api-key=5c80aa20d61dec8a332aea8ad7c7c0d7:3:68189777")
+    res = requests.get("http://api.nytimes.com/svc/community/v2/comments/random.json?&api-key=5c80aa20d61dec8a332aea8ad7c7c0d7:3:68189777")
     entry = json.loads(json.dumps(res.json()))
     commentlist = []
     if entry.has_key("results"):
@@ -33,5 +33,7 @@ def getComments():
 
 @app.route('/')
 def hello():
-    return getComments()[0]
+    comment = getComments()[0]
+    result = str(comment) + "<br><br>" + str(rb.classify(comment))
+    return result
 
