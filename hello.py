@@ -46,11 +46,9 @@ def hello():
     commentlist = []
     for c in cs:
         cscraped = scrape.strip_tags(c)
-        score = rb.score(cscraped)
         comment = {}
         comment['content'] = str(cscraped)
         comment['clf'] = str(rb.classify(cscraped))
-        if math.fabs(score['crazy'] - score['sane']) > 15:
-            commentlist.append(comment)
+        commentlist.append(comment)
     return render_template("index.html", commentlist=commentlist)
 
