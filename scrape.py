@@ -21,18 +21,12 @@ def grab_html(acronym):
 	req = urllib2.urlopen("http://www.acronymfinder.com/" + acronym + ".html")
 	return req.read()
 
-def parse_soup(clean_html, acronym):
-    add = 0
-    for i in clean_html:
-        if i == '*'
-            add = 1
-        
 
             
 
         
                
 
-print strip_tags(parse_soup(grab_html('YAP'), 'YAP'))
+#print strip_tags(parse_soup(grab_html('YAP'), 'YAP'))
 
 
