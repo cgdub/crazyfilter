@@ -16,17 +16,17 @@ else:
     rb = redisbayes.RedisBayes(redis=redis.Redis(host=url.hostname, port=url.port, password=url.password))
 from sys import argv
 
-with open('sanecomments2.txt') as f:
+with open('sanebyhand.txt') as f:
     normallist = f.readlines()
 
-with open('crazycomments.txt') as f:
+with open('nutbyhand.txt') as f:
     crazylist = f.readlines()
 
-for crazy in crazylist:
-    rb.train('sane', scrape.strip_tags(crazy))
-
 for normal in normallist:
-    rb.train('crazy', scrape.strip_tags(normal))
+    rb.train('sane', normal)
+
+for crazy in crazylist:
+    rb.train('crazy', crazy)
 
 app = Flask(__name__)
 
