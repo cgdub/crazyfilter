@@ -5,8 +5,12 @@ import urlparse
 from flask import Flask
 
 import redis, redisbayes
-url = urlparse.urlparse(os.environ.get('REDISCLOUD_URL'))
-rb = redisbayes.RedisBayes(redis=redis.Redis(host=url.hostname, port=url.port, password=url.password))
+if not os.environ.get('REDISCLOUD_URL'):
+    print "not heroku!"
+    rb = redisbayes.RedisBayes(redis=redis.Redis())
+else:
+    url = urlparse.urlparse(os.environ.get('REDISCLOUD_URL'))
+    rb = redisbayes.RedisBayes(redis=redis.Redis(host=url.hostname, port=url.port, password=url.password))
 from sys import argv
 
 with open('sanecomments.txt') as f:
