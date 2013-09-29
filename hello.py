@@ -1,4 +1,6 @@
 import os
+import requests
+import json
 from flask import Flask
 
 import redis, redisbayes
@@ -19,7 +21,17 @@ for normal in normallist:
 
 app = Flask(__name__)
 
+def getComments():
+    res = requests.get("http://api.nytimes.com/svc/community/v2/comments/recent.json?&api-key=5c80aa20d61dec8a332aea8ad7c7c0d7:3:68189777")
+    entry = json.loads(json.dumps(res.json()))
+    commentlist = []
+    if entry.has_key("results"):
+        if entry.get("results").has_key("comments"):
+            for comment in entry.get("results").get("comments"):
+                commentlist.append(comment.get("commentBody").encode('ascii', 'ignore'))
+    return commentlist
+
 @app.route('/')
 def hello():
-    return rb.classify('I agree with this opinion. He poses a very interesting argument.')
+    return getComments()[0]
 
