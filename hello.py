@@ -44,7 +44,7 @@ def getComments():
 def hello():
     cs = getComments()
     commentlist = []
-    for c in cs:
+    for c in cs[:5]:
         cscraped = scrape.strip_tags(c)
         comment = {}
         comment['content'] = str(cscraped)
